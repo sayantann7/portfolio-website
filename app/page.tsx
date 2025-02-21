@@ -41,22 +41,51 @@ export default function Home() {
   };
 
   const skills = [
-    // Your skills data here
+    { name: "HTML, CSS, JS", level: 95 },
+    { name: "React.js, Next.js, Tailwind", level: 80 },
+    { name: "Node.js, Express", level: 85 },
+    { name: "MongoDB, GraphQL", level: 80 },
+    { name: "Clerk Auth", level: 85 },
+    { name: "Canva", level: 90 },
+    { name: "Adobe After Effects", level: 70 }
   ];
 
+  const downloadResume = () => {
+    const resumeUrl = '/resume.pdf';
+    const link = document.createElement('a');
+    link.href = resumeUrl;
+    link.download = 'sayantan-resume.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
-    <div ref={containerRef}>
+    <main ref={containerRef} className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="min-h-screen flex flex-col justify-center items-center text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0">
+          <Canvas>
+            <PerspectiveCamera makeDefault position={[0, 0, 5]} />
+            <OrbitControls enableZoom={false} />
+            <HeroScene />
+          </Canvas>
+        </div>
+        
+        <motion.div 
+          ref={heroRef}
+          initial={{ opacity: 0, y: 50 }}
+          animate={heroInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 1 }}
+          className="relative z-10 text-center"
         >
-          <h1 className="text-5xl font-bold mb-4">{typewriterText}<Cursor /></h1>
-          <p className="text-lg text-muted-foreground mb-8">Welcome to my portfolio website</p>
-          <div className="flex space-x-4">
-            <Button variant="primary" size="lg" onClick={scrollToProjects}>
+          <h1 className="text-6xl font-bold mb-4">
+            <span>{typewriterText}</span>
+            <Cursor cursorStyle="_" />
+          </h1>
+          <p className="text-xl text-muted-foreground mb-8">Crafting digital experiences that inspire</p>
+          <div className="space-y-4">
+            <Button size="lg" onClick={scrollToProjects}>
               <ChevronDown className="mr-2" /> Explore My Work
             </Button>
             <div>
@@ -109,10 +138,81 @@ export default function Home() {
               />
             </div>
             <h2 className="text-4xl font-bold mb-4">About Me</h2>
-            <p className="text-muted-foreground">I&apos;m a passionate developer with a love for creating innovative solutions.</p>
+            <p className="text-muted-foreground">Passionate about creating innovative solutions</p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+            <div>
+              <h3 className="text-2xl font-bold mb-4">My Journey</h3>
+              <p className="text-muted-foreground mb-8">
+              I'm a creative and motivated individual, defined by a journey of curiosity and resilience. From my early explorations of new ideas to overcoming challenges that have shaped my path, every step has been a lesson in growth and innovation. Each obstacle has provided an opportunity to learn, refine my skills, and fuel my passion for making a positive impact.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-2xl font-bold mb-4">Skills</h3>
+              <div className="space-y-6">
+                {skills.map((skill, index) => (
+                  <SkillGraph key={index} {...skill} />
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section className="py-20 px-4 md:px-8">
+        <div className="max-w-3xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="text-center mb-16"
+          >
+            <Mail className="w-12 h-12 mx-auto mb-4" />
+            <h2 className="text-4xl font-bold mb-4">Get in Touch</h2>
+            <p className="text-muted-foreground mb-8">Connect with me on social media</p>
+            <div className="flex justify-center space-x-6">
+              <motion.a
+                href="https://github.com/sayantann7"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.1 }}
+                className="text-foreground hover:text-primary"
+              >
+                <Github className="w-8 h-8" />
+              </motion.a>
+              <motion.a
+                href="https://linkedin.com/in/sayantann7"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.1 }}
+                className="text-foreground hover:text-primary"
+              >
+                <Linkedin className="w-8 h-8" />
+              </motion.a>
+              <motion.a
+                href="https://x.com/sayantann7"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.1 }}
+                className="text-foreground hover:text-primary"
+              >
+                <Twitter className="w-8 h-8" />
+              </motion.a>
+              <motion.a
+                href="https://instagram.com/sayantann7"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.1 }}
+                className="text-foreground hover:text-primary"
+              >
+                <Instagram className="w-8 h-8" />
+              </motion.a>
+            </div>
           </motion.div>
         </div>
       </section>
-    </div>
+    </main>
   );
 }
