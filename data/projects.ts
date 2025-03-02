@@ -21,11 +21,11 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/sayantann7/symbi-eat.git",
   },
   {
-    title: "Smallr",
+    title: "Deep-Q Lunar Lander",
     description:
-      "Smallr is a URL shortener that makes it easy to create, share, and manage short links. Create your own custom short links with Smallr.",
-    tags: ["Next.js", "Tailwind CSS", "MongoDB"],
-    githubUrl: "https://github.com/sayantann7/smallr.git",
+      "This project implements a Deep Q-Network (DQN) agent to solve the Lunar Lander environment from the OpenAI Gym.",
+    tags: ["Deep Q-Network", "gymnasium", "Python", "PyTorch"],
+    githubUrl: "https://github.com/sayantann7/symbichat.git",
   },
   {
     title: "CodeHub",
@@ -35,11 +35,11 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/sayantann7/code-hub.git",
   },
   {
-    title: "Deep-Q Lunar Lander",
+    title: "Smallr",
     description:
-      "This project implements a Deep Q-Network (DQN) agent to solve the Lunar Lander environment from the OpenAI Gym.",
-    tags: ["Deep Q-Network", "gymnasium", "Python", "PyTorch"],
-    githubUrl: "https://github.com/sayantann7/symbichat.git",
+      "Smallr is a URL shortener that makes it easy to create, share, and manage short links. Create your own custom short links with Smallr.",
+    tags: ["Next.js", "Tailwind CSS", "MongoDB"],
+    githubUrl: "https://github.com/sayantann7/smallr.git",
   },
   {
     title: "Ranked Choice Election DApp",
